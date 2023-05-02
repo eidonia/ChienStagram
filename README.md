@@ -30,45 +30,8 @@ A **Exalt**, on ne plaisante pas avec le [Software Craftmanship](https://manifes
 
 ## ⚠️ Rendu de candidature ⚠️ 
 
-> Pour le rendu, pushez votre implémentation **sur une nouvelle branche "features/post"**, ouvrez une **Merge Request** vers la branche Main et notifiez votre interlocuteur par message que le kata est fini. La revue du kata se fera via la Merge Request.
+Création de la page post en clean archi, pour les tests du viewModels j'ai dû implémenter org.jetbrains.kotlinx:kotlinx-coroutines-test et androidx.arch.core:core-testing
 
-
-
-## Pour aller plus loin...
-
-Vous pouvez continuer d'ajouter des pages. Par exemple une page **Profil**, pour visualiser un utilisateur:
-
-| home screen | post screen | user screen |
-|:-----------:|:-----------:|:-----------:|
-| ![home light](screenshots/home_light.jpg) | ![post light](screenshots/post_light.jpg) | ![user light](screenshots/user_light.jpg) |
-
-
-# Contexte & Motivation derrière le kata
-
-Le développement mobile a plusieurs particularités : 
-
-* **Fullstack** par nature (affichage + métier + données) -> besoin d’être à l’aise sur tous ces sujets 
-  
-
-* Résolument **multiplateforme**, car tributaire des différents hardware et OS des téléphones mobiles du marché. 
-
-* Fortement sujet au changement, l’application étant généralement mise à disposition d’utilisateurs tôt dans le processus de développement. La facilité à ajouter de nouvelles features et à maintenir l’existant doit être pensée dès la phase de conception. 
-
-* Nécessairement modulaire. L’interface change souvent, pour suivre les feedbacks utilisateurs … On ne peut pas en dire autant de la logique métier et du modèle. **Les modifications de l’interface ne doivent pas avoir d’effet de bord sur la logique métier sous-jacente.**
-
-La [Clean Archi Android](https://medium.com/android-dev-hacks/detailed-guide-on-android-clean-architecture-9eab262a9011), que vous développerez dans ce kata, répond à ce particularisme. En séparant les couches applicatives en Domain / Présentation / Data indépendantes, on s’assure :  
-
-* L’exécution des use-cases, contenus dans la couche Domain, ne dépend pas du device exécutant l'application 
-
-* Les trois couches peuvent évoluer séparément, sans effet de bord, et être reliées par [injection de dépendance](https://linuxpip.org/markdown-change-image-size/)
-
-# Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
-
-- Vos choix d'implémentation et de dépendence à des libraries externes `DOIVENT` être justifés dans un Readme. D'autres justications sur des problèmes que vous avez rencontrés ou sur ce que vous auriez aimé faire autrement `PEUVENT` être ajoutés au Readme.
-
-- L'UI `PEUT` être développée selon votre préférence en *vues XML classiques* ou via *Jetpack Compose* comme vous le souhaitez.
-
-- Les *UseCases* et les *implémentations de Repositories* `DOIVENT` être testés unitairement.
-D'autres classes comme les *mappers* ou les *ViewModels* `DEVRAIENT` être testés unitairement.
-
-- Le repo git de votre solution `DOIT` contenir des screen shots des écrans développés et `DOIT` contenir un apk. Cet apk `PEUT` être de type *debug* et `DEVRAIT` être mis dans une *release* : [Github](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) ou [Gitlab](https://stackoverflow.com/a/50442578).
+|             post with comment screen              |                 post without comment                 |
+|:-------------------------------------------------:|:----------------------------------------------------:|
+| ![home light](screenshots/post_with_comments.png) | ![post light](screenshots/post_without_comments.png) |
