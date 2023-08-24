@@ -37,6 +37,7 @@ android {
 dependencies {
     implementation(project(":home"))
     implementation(project(":post"))
+    implementation(project(":profile"))
 
     // Hilt
     implementation("com.google.dagger:hilt-android:${Versions.HILT}")

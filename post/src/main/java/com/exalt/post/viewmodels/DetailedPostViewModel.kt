@@ -8,7 +8,6 @@ import com.exalt.domain.post.usecases.GetCommentsPreviewUseCase
 import com.exalt.domain.post.usecases.GetDetailedPostPreviewUseCase
 import com.exalt.domain.post.usecases.PostPreview
 import com.exalt.post.mappers.CommentPreviewMapper
-import com.exalt.data.mappers.DateMappers
 import com.exalt.post.mappers.PostPreviewMapper
 import com.exalt.post.viewobjects.CommentFlow
 import com.exalt.post.viewobjects.PostFlow

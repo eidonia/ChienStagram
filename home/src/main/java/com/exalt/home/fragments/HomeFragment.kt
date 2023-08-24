@@ -45,10 +45,13 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = PostListAdapter(this@HomeFragment.requireContext()).apply {
                 onUserClick = { userId ->
-                    // TODO NAVIGATE TO USER SCREEN
+                    val uri = Uri.parse("App://com.exalt.profile/$userId")
+                    val request = NavDeepLinkRequest.Builder
+                        .fromUri(uri)
+                        .build()
+                    findNavController().navigate(request)
                 }
                 onPostClick = { postId ->
-                    Log.d("postId", "homeFrag : $postId")
                     val uri = Uri.parse("App://com.exalt.post/$postId")
                     val request = NavDeepLinkRequest.Builder
                         .fromUri(uri)

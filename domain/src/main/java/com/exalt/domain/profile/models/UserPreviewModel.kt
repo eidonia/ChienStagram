@@ -1,13 +1,12 @@
-package com.exalt.api.models
+package com.exalt.domain.profile.models
 
-data class UserPreviewDTO(
+data class UserPreviewModel(
     val dateOfBirth: String,
     val email: String,
     val firstName: String,
     val gender: String,
-    val id: String,
     val lastName: String,
-    val location: Location,
+    val location: LocationPreviewModel,
     val phone: String,
     val picture: String,
     val registerDate: String,
