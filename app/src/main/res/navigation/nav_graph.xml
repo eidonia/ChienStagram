@@ -25,4 +25,15 @@
             app:uri="App://com.exalt.post/{postId}"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.exalt.profile.fragments.ProfilePageFragment">
+        <argument
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="string"/>
+        <deepLink
+            app:uri="App://com.exalt.profile/{userId}"/>
+    </fragment>
+
 </navigation>

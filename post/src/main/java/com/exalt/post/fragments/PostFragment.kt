@@ -1,5 +1,6 @@
 package com.exalt.post.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
@@ -11,6 +12,8 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.exalt.post.adapters.CommentPostAdapter
@@ -19,6 +22,7 @@ import com.example.post.R
 import com.example.post.databinding.FragmentPostBinding
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.fragment.findNavController
 
 @AndroidEntryPoint
 class PostFragment : Fragment() {
@@ -52,7 +56,17 @@ class PostFragment : Fragment() {
     private fun initViews() {
         binding.commentRecycler.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CommentPostAdapter(context)
+            adapter = CommentPostAdapter(context).apply {
+                onUserClick = { userId ->
+                    val uri = Uri.parse("App://com.exalt.profile/$userId")
+                    val request = NavDeepLinkRequest.Builder
+                        .fromUri(uri)
+                        .build()
+                    findNavController().navigate(request)
+
+                }
+
+            }
         }
         binding.topBar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -85,6 +99,14 @@ class PostFragment : Fragment() {
                         .load(ownerPictureUri)
                         .circleCrop()
                         .into(binding.imageUser)
+
+                    binding.constraintNameUser.setOnClickListener {
+                        val uri = Uri.parse("App://com.exalt.profile/$ownerId")
+                        val request = NavDeepLinkRequest.Builder
+                            .fromUri(uri)
+                            .build()
+                        findNavController().navigate(request)
+                    }
 
                     binding.textDatePost.text = publishDate
                     binding.textNameUser.text = ownerName
