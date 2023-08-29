@@ -12,3 +12,4 @@ val Pink40 = Color(0xFF7D5260)
 
 
 val Azure = Color(0xFF336799)
+val GreyBackground = Color(0xFF424242)

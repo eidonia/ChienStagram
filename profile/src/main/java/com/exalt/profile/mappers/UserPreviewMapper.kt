@@ -16,10 +16,7 @@ class UserPreviewMapper @Inject constructor() {
         lastName = userPreviewModel.lastName,
         location = toLocation(userPreviewModel.location),
         phone = userPreviewModel.phone,
-        picture = userPreviewModel.picture,
-        registerDate = userPreviewModel.registerDate,
-        title = userPreviewModel.title,
-        updatedDate = userPreviewModel.updatedDate
+        picture = userPreviewModel.picture
     )
 
     private fun toLocation(locationPreviewModel: LocationPreviewModel) = Location(

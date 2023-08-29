@@ -1,13 +1,14 @@
 package com.exalt.profile.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.exalt.profile.R
+import com.exalt.profile.ui.compose.ProfilePage
 import com.exalt.profile.viewmodels.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,17 +29,13 @@ class ProfilePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_page, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
-        initViews()
-        view.findViewById<TextView>(R.id.helloText).let {
-            it.text = "Hello $userId"
-        }
+        initViews(view)
     }
 
     private fun initObservers() {
@@ -46,7 +43,16 @@ class ProfilePageFragment : Fragment() {
     }
 
 
-    private fun initViews() {
-
+    private fun initViews(view: View) {
+        viewModel.userState.observe(viewLifecycleOwner) {user ->
+            view.findViewById<ComposeView>(R.id.compose_view).setContent {
+                ProfilePage(
+                    isLoading = user.isLoading,
+                    user = user.data
+                ) {
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        }
     }
 }

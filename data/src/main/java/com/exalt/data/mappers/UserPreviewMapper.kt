@@ -6,20 +6,19 @@ import com.exalt.domain.profile.models.LocationPreviewModel
 import com.exalt.domain.profile.models.UserPreviewModel
 import javax.inject.Inject
 
-class UserPreviewMapper @Inject constructor() {
+class UserPreviewMapper @Inject constructor(
+    private val dateMappers: DateMappers
+) {
 
     fun fromDto(userPreviewDTO: UserPreviewDTO): UserPreviewModel = UserPreviewModel(
-        dateOfBirth = userPreviewDTO.dateOfBirth,
+        dateOfBirth = dateMappers.toDate(userPreviewDTO.dateOfBirth),
         email = userPreviewDTO.email,
         firstName = userPreviewDTO.firstName,
         gender = userPreviewDTO.gender,
         lastName = userPreviewDTO.lastName,
         location = locationFromDto(userPreviewDTO.location),
         phone = userPreviewDTO.phone,
-        picture = userPreviewDTO.picture,
-        registerDate = userPreviewDTO.registerDate,
-        title = userPreviewDTO.title,
-        updatedDate = userPreviewDTO.updatedDate
+        picture = userPreviewDTO.picture
     )
 
     private fun locationFromDto(location: Location): LocationPreviewModel = LocationPreviewModel(

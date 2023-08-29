@@ -9,8 +9,5 @@ data class User(
     val lastName: String,
     val location: Location,
     val phone: String,
-    val picture: String,
-    val registerDate: String,
-    val title: String,
-    val updatedDate: String
+    val picture: String
 )

@@ -8,8 +8,5 @@ data class UserPreviewModel(
     val lastName: String,
     val location: LocationPreviewModel,
     val phone: String,
-    val picture: String,
-    val registerDate: String,
-    val title: String,
-    val updatedDate: String
+    val picture: String
 )
