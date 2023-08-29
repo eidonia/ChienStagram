@@ -1,6 +1,7 @@
 package com.exalt.data
 
 import com.exalt.api.models.CommentPreviewDTO
+import com.exalt.api.models.Location
 import com.exalt.api.models.PostPreviewDTO
 import com.exalt.api.models.UserPreviewDTO
 import com.exalt.domain.home.models.DomainModelFactory
@@ -12,7 +13,6 @@ import com.exalt.domain.home.models.DomainModelFactory.OWNER_FIRST_NAME
 import com.exalt.domain.home.models.DomainModelFactory.OWNER_ID
 import com.exalt.domain.home.models.DomainModelFactory.OWNER_LAST_NAME
 import com.exalt.domain.home.models.DomainModelFactory.OWNER_PICTURE_URL
-import com.exalt.domain.home.models.DomainModelFactory.OWNER_TITLE
 import com.exalt.domain.home.models.DomainModelFactory.POST_ID
 
 object ModelDataFactory {
@@ -29,9 +29,18 @@ object ModelDataFactory {
     fun getUserPreviewDTO(id: String = OWNER_ID) =
         UserPreviewDTO(
             id = OWNER_ID,
-            title = OWNER_TITLE,
+            dateOfBirth = DomainModelFactory.OWNER_DATE_BIRTH,
+            email = DomainModelFactory.OWNER_EMAIL,
             firstName = OWNER_FIRST_NAME,
+            gender = DomainModelFactory.OWNER_GENDER,
             lastName = OWNER_LAST_NAME,
+            location = Location(
+                city = DomainModelFactory.OWNER_LOCATION_CITY,
+                country = DomainModelFactory.OWNER_LOCATION_COUNTRY,
+                state = DomainModelFactory.OWNER_LOCATION_STATE,
+                street = DomainModelFactory.OWNER_LOCATION_STREET
+            ),
+            phone = DomainModelFactory.OWNER_PHONE,
             picture = OWNER_PICTURE_URL
         )
 

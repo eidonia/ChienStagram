@@ -46,7 +46,6 @@ import coil.request.ImageRequest
 import com.exalt.profile.R
 import com.exalt.profile.ui.theme.Azure
 import com.exalt.profile.ui.theme.GreyBackground
-import com.exalt.profile.ui.theme.PurpleGrey40
 import com.exalt.profile.viewobjects.Location
 import com.exalt.profile.viewobjects.User
 
@@ -70,11 +69,12 @@ fun ProfilePage(
                     }
                 },
                 backgroundColor = Azure
-                )
+            )
         }
     ) {
         Box(
-            modifier = Modifier.padding(it)
+            modifier = Modifier
+                .padding(it)
                 .fillMaxSize()
                 .background(color = GreyBackground),
         ) {
@@ -91,7 +91,7 @@ fun ProfilePage(
 }
 
 @Composable
-private fun UserInformations(user: User ?) {
+private fun UserInformations(user: User?) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
@@ -207,10 +207,12 @@ private fun UserInformations(user: User ?) {
             bodyText = user?.phone ?: ""
         )
 
-        AdressText(spacerModifier = Modifier
-            .height(20.dp),
+        AdressText(
+            spacerModifier = Modifier
+                .height(20.dp),
             textModifier = Modifier.padding(start = 10.dp),
-            location = user?.location)
+            location = user?.location
+        )
 
     }
 }
@@ -245,7 +247,12 @@ private fun AdressText(
     textModifier: Modifier = Modifier,
     location: Location?
 ) {
-    TextProfilePage(spacerModifier = spacerModifier, textModifier = textModifier, titleText = "Adress", bodyText = location?.street ?: "")
+    TextProfilePage(
+        spacerModifier = spacerModifier,
+        textModifier = textModifier,
+        titleText = "Adress",
+        bodyText = location?.street ?: ""
+    )
 
     Text(
         modifier = textModifier,

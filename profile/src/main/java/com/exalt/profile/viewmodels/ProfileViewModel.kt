@@ -16,19 +16,21 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val getProfilePreviewUseCase: GetProfilePreviewUseCase,
     private val userPreviewMapper: UserPreviewMapper
-): ViewModel() {
+) : ViewModel() {
 
     val userState: MutableLiveData<UserState> by lazy { MutableLiveData<UserState>() }
 
     fun getUser(userId: String) =
         getProfilePreviewUseCase(userId).onEach { result ->
-            when(result) {
+            when (result) {
                 is UserPreview.Loading -> {
                     userState.value = UserState(isLoading = true)
                 }
+
                 is UserPreview.Success -> {
                     userState.value = UserState(data = userPreviewMapper.toUser(result.data!!))
                 }
+
                 is UserPreview.Error -> {
                     userState.value = UserState(message = result.message!!)
                 }

@@ -9,7 +9,7 @@ import javax.inject.Inject
 class ProfileRepositoryImpl @Inject constructor(
     private val postService: PostService,
     private val userPreviewMapper: UserPreviewMapper
-): ProfileRepository {
+) : ProfileRepository {
     override suspend fun getUser(userId: String): UserPreviewModel? =
         postService.getUser(userId).let { response ->
             if (response.isSuccessful) {

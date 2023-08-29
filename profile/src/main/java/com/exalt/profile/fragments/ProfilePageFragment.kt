@@ -44,7 +44,7 @@ class ProfilePageFragment : Fragment() {
 
 
     private fun initViews(view: View) {
-        viewModel.userState.observe(viewLifecycleOwner) {user ->
+        viewModel.userState.observe(viewLifecycleOwner) { user ->
             view.findViewById<ComposeView>(R.id.compose_view).setContent {
                 ProfilePage(
                     isLoading = user.isLoading,

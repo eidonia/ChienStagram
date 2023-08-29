@@ -19,18 +19,28 @@ class CommentPostAdapter(
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(comment: Comment) {
             with(itemView) {
-                findViewById<ImageView>(R.id.imageUser).let {
+                findViewById<ImageView>(R.id.imageUser).apply {
                     Glide.with(itemView)
                         .load(comment.ownerPictureUrl)
                         .circleCrop()
-                        .into(it)
+                        .into(this)
+                    setOnClickListener {
+                        onUserClick?.invoke(comment.ownerId)
+                    }
                 }
 
-                findViewById<TextView>(R.id.textNameUser).text = comment.ownerName
+                findViewById<TextView>(R.id.textNameUser).apply {
+                    text = comment.ownerName
+                    setOnClickListener {
+                        onUserClick?.invoke(comment.ownerId)
+                    }
+                }
                 findViewById<TextView>(R.id.textComment).text = comment.message
             }
         }
     }
+
+    var onUserClick: ((String) -> Unit)? = null
 
     private class CommentDiffCall: DiffUtil.ItemCallback<Comment>() {
         override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean =
